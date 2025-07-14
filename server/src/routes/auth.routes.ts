@@ -1,12 +1,12 @@
-import Register  from "../controllers/auth.controler";
+import Register from "../controllers/auth.controler";
 import { Login } from "../controllers/auth.controler";
 import { Logout } from "../controllers/auth.controler";
 import { Router } from "express";
 
-const router=Router()
+const router = Router();
 
-router.use("/",Register)
-router.use("/",Login)
-router.use("/",Logout)
+router.post("/register", Register);
+router.post("/login", Login);
+router.post("/logout", Logout);
 
 export default router;

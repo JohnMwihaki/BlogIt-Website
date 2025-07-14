@@ -5,17 +5,22 @@ import dotenv from "dotenv"
 
 import  authRoutes from './routes/auth.routes';
 import  blogRoutes from './routes/blog.routes';
+import uploadRoute from './routes/upload.routes'
 dotenv.config()
 export const app= express();
-app.use(cors())
+app.use(cors({
+    origin:'http://localhost:5173',
+    credentials:true,
+}))
 app.use(express.json())
 
 app.post("/",(_req:Request,res:Response)=>{
     res.send("i am running");
 })
 
-app.use("/",authRoutes);
+app.use("/api/auth",authRoutes);
 app.use("/",blogRoutes);
+app.use('/upload',uploadRoute)
 
 const port=process.env.PORT || 5500
 app.listen(port,()=>{

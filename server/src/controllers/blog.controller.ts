@@ -2,23 +2,42 @@ import { Request, Response } from "express";
 import client from "../config/prisma";
 import bcrypt from "bcrypt";
 
+interface AuthRequest extends Request {
+  userId?: string;
+}
+
+const includeAuthor = {
+  user: {
+    select: {
+      firstName: true,
+      lastName: true,
+    },
+  },
+};
+
 // Create Blog
-export async function createBlog(req: Request, res: Response) {
+export async function createBlog(req: AuthRequest, res: Response) {
   const { image, title, synopsis, content } = req.body;
-  const {userId} = req.params;
+  const userId = req.userId;
 
   try {
+    if (!userId) {
+      return res.status(400).json({ error: "userId is required" });
+    }
+
     const newBlog = await client.post.create({
       data: {
         image,
         title,
         synopsis,
         content,
-        userId: userId,
+        userId,
       },
+      include: includeAuthor,
     });
     res.status(201).json(newBlog);
   } catch (e) {
+    console.error(e);
     res.status(500).json({ error: "Failed to create blog" });
   }
 }
@@ -28,6 +47,7 @@ export async function getAll(req: Request, res: Response) {
   try {
     const blogs = await client.post.findMany({
       where: { isDeleted: false },
+      include: includeAuthor,
     });
     res.status(200).json(blogs);
   } catch (e) {
@@ -42,6 +62,7 @@ export async function getUnique(req: Request, res: Response) {
   try {
     const blog = await client.post.findUnique({
       where: { id },
+      include: includeAuthor,
     });
 
     if (!blog || blog.isDeleted) {
@@ -69,6 +90,7 @@ export async function updateBlogs(req: Request, res: Response) {
         content,
         lastUpdatedAt: new Date(),
       },
+      include: includeAuthor,
     });
     res.status(200).json(updated);
   } catch (e) {
@@ -95,7 +117,7 @@ export async function deleteBlog(req: Request, res: Response) {
 
 // Update User Info
 export async function updateUserInfo(req: Request, res: Response) {
-  const {userId} = req.params;
+  const { userId } = req.params;
   const { firstName, lastName, userName, emailAddress } = req.body;
 
   try {
@@ -116,8 +138,8 @@ export async function updateUserInfo(req: Request, res: Response) {
 
 // Update Password
 export async function updatePassword(req: Request, res: Response) {
-  const {userId} = req.params;
-  const { currentPassword, newPassword } = req.body;
+  const { userId, currentPassword, newPassword } = req.body;
+
 
   try {
     const user = await client.users.findUnique({
@@ -148,18 +170,36 @@ export async function updatePassword(req: Request, res: Response) {
 }
 
 // Get All Blogs by User
-export async function allBlogUser(req: Request, res: Response) {
-  const {userId }= req.params;
+
+export async function allBlogUser(req: AuthRequest, res: Response) {
+  const userId = req.userId;
+
+  if (!userId) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
 
   try {
     const blogs = await client.post.findMany({
       where: {
-        userId: userId,
+        userId,
         isDeleted: false,
+      },
+      include: {
+        user: {
+          select: {
+            firstName: true,
+            lastName: true,
+            id: true,
+          },
+        },
       },
     });
     res.status(200).json(blogs);
   } catch (e) {
     res.status(500).json({ error: "Failed to fetch user blogs" });
   }
+}
+
+export const loginuser= async (req:Request,res:Response)=>{
+  res.send("hello world")
 }

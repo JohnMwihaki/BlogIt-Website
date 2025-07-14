@@ -36,26 +36,20 @@ export default async function Register(req: Request, res: Response) {
 
     const token = generateToken(user.id);
 
-    res.status(201).json({
-      id: user.id,
-      firstname: user.firstName,
-      lastname: user.lastName,
-      email: user.emailAddress,
-      token,
-    });
+    res.status(201).json(user);
     
   } catch (error) {
+    console.error(error)
     res.status(500).json({ message: "Failed to create new user", error });
   }
 }
-
 export async function Login(req: Request, res: Response) {
-  const { emailAddress, userName, password } = req.body;
+  const { identifier, password } = req.body;
 
   try {
     const user = await client.users.findFirst({
       where: {
-        OR: [{ emailAddress }, { userName }],
+        OR: [{ emailAddress: identifier }, { userName: identifier }],
       },
     });
 
@@ -72,13 +66,16 @@ export async function Login(req: Request, res: Response) {
     const token = generateToken(user.id);
 
     res.status(200).json({
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      emailAddress: user.emailAddress,
+      user: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        emailAddress: user.emailAddress,
+      },
       token,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Login failed", error });
   }
 }
