@@ -20,7 +20,7 @@ export default function LandingPage() {
           backgroundImage: `linear-gradient(rgba(19, 18, 18, 0.65), rgba(19, 18, 18, 0.65)), url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "60vh",
+          height: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
