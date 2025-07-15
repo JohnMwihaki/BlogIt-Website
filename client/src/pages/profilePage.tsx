@@ -43,7 +43,7 @@ export default function ProfilePage() {
       </Typography>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-        {blogs?.map((blog: Blog) => (
+        {blogs?.map((blog) => (
           <Box key={blog.id} sx={{ maxWidth: '100%' }}>
             <BlogCard blog={blog} editable />
           </Box>
