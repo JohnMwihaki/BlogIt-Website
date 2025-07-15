@@ -119,6 +119,7 @@ export default function Header() {
           px: 4,
           flexWrap: "wrap",
           borderTop: "1px solid rgba(255,255,255,0.1)",
+          width:{xs:'100%'}
         }}
       >
         <Box
@@ -143,7 +144,7 @@ export default function Header() {
           </Button>
         </Box>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2,flexWrap:'wrap' }}>
           <TextField
             size="small"
             placeholder="Search blogs"
@@ -171,13 +172,13 @@ export default function Header() {
                 component={Link}
                 to="/login"
                 sx={{
-                  backgroundColor: "#2f70f3",
+                  backgroundColor: "var(--sky-blue)",
                   color: "white",
                   borderRadius: 100,
                   px: 3,
                   py: 1,
                   "&:hover": {
-                    backgroundColor: "#1e5be0",
+                    backgroundColor: "var(--sky-blue)",
                   },
                 }}
               >
@@ -202,32 +203,74 @@ export default function Header() {
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
+                PaperProps={{
+                  sx: {
+                    backgroundColor: "var(--dark)",
+                    color: "var(--smoke-white)",
+                    borderRadius: 2,
+                    mt: 1,
+                    minWidth: 180,
+                    boxShadow: "0px 4px 20px rgba(0,0,0,0.2)",
+                  },
+                }}
               >
                 <MenuItem
                   onClick={() => {
                     navigate("/profile");
                     handleMenuClose();
                   }}
+                  sx={{
+                    fontFamily: "var(--primary-font)",
+                    "&:hover": {
+                      backgroundColor: "#132f4c",
+                    },
+                  }}
                 >
                   Profile
                 </MenuItem>
+
                 <MenuItem
                   onClick={() => {
                     navigate("/profile-info");
                     handleMenuClose();
                   }}
+                  sx={{
+                    fontFamily: "var(--primary-font)",
+                    "&:hover": {
+                      backgroundColor: "#132f4c",
+                    },
+                  }}
                 >
                   Update Info
                 </MenuItem>
+
                 <MenuItem
                   onClick={() => {
                     navigate("/change-password");
                     handleMenuClose();
                   }}
+                  sx={{
+                    fontFamily: "var(--primary-font)",
+                    "&:hover": {
+                      backgroundColor: "#132f4c",
+                    },
+                  }}
                 >
                   Change Password
                 </MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+
+                <MenuItem
+                  onClick={handleLogout}
+                  sx={{
+                    fontFamily: "var(--primary-font)",
+                    color: "var(--amber)",
+                    "&:hover": {
+                      backgroundColor: "#330000",
+                    },
+                  }}
+                >
+                  Logout
+                </MenuItem>
               </Menu>
             </Box>
           )}

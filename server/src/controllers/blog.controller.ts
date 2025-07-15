@@ -165,6 +165,7 @@ export async function updatePassword(req: Request, res: Response) {
 
     res.status(200).json({ message: "Password updated", updated });
   } catch (e) {
+    console.log(e)
     res.status(500).json({ error: "Failed to update password" });
   }
 }

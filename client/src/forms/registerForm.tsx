@@ -10,7 +10,7 @@ import {
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import { registerUser } from "../services/authApi";
 
@@ -203,6 +203,20 @@ export default function RegisterForm() {
         >
           Register
         </Button>
+        <Stack direction="row" justifyContent="center" spacing={1}>
+          <Typography>Already have an account?</Typography>
+          <Link
+            to="/login"
+            style={{
+              textDecoration: "none",
+              color: "var(--dark-blue)",
+              fontWeight: 600,
+              fontFamily: "var(--primary-font)",
+            }}
+          >
+            Login
+          </Link>
+        </Stack>
       </Stack>
     </Box>
   );

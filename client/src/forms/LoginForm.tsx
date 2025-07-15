@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Button, TextField, Typography, Stack } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import { loginUser } from "../services/authApi";
 
@@ -94,7 +94,23 @@ export default function LoginForm() {
         >
           Login
         </Button>
+          <Stack direction="row" justifyContent="center" spacing={1}>
+          <Typography>Don't have an account?</Typography>
+          <Link
+            to="/register"
+            style={{
+              textDecoration: "none",
+              color: "var(--dark-blue)",
+              fontWeight: 600,
+              fontFamily: "var(--primary-font)",
+            }}
+          >
+            Register Now
+          </Link>
+        </Stack>
       </Stack>
+       
+
     </Box>
   );
 }
