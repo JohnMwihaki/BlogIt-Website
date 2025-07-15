@@ -139,6 +139,7 @@ export async function updateUserInfo(req: Request, res: Response) {
 // Update Password
 export async function updatePassword(req: Request, res: Response) {
   const { userId, currentPassword, newPassword } = req.body;
+  console.log(req.body)
 
 
   try {
