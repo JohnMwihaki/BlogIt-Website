@@ -10,9 +10,11 @@ import {
   Typography,
 } from "@mui/material";
 
+
 const image = "./background.jpg";
 
 export default function LandingPage() {
+
   return (
     <>
       <Box
@@ -68,7 +70,7 @@ export default function LandingPage() {
 
         <Card sx={{ borderBottom: "1px solid var(--stone-grey)", borderRadius: 0 }}>
           <Stack direction="row">
-            <CardMedia component="img" image={image} alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
+            <CardMedia component="img" image='../development.jpg' sx={{ width: '50%', objectFit: "cover" }} />
             <Box flex={1}>
               <CardContent>
                 <Typography variant="h5" sx={{ fontFamily: "var(--primary-font)", color: "var(--earth-brown)" }}>
@@ -98,7 +100,7 @@ export default function LandingPage() {
 
         <Card sx={{ borderBottom: "1px solid var(--stone-grey)", borderRadius: 0 }}>
           <Stack direction="row-reverse">
-            <CardMedia component="img" image={image} alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
+            <CardMedia component="img" image='../ui.jpg' alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
             <Box flex={1}>
               <CardContent>
                 <Typography variant="h5" sx={{ fontFamily: "var(--primary-font)", color: "var(--earth-brown)" }}>
@@ -128,7 +130,7 @@ export default function LandingPage() {
 
         <Card sx={{ borderBottom: "1px solid var(--stone-grey)", borderRadius: 0 }}>
           <Stack direction="row">
-            <CardMedia component="img" image={image} alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
+            <CardMedia component="img" image='../ai-test.jpg' alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
             <Box flex={1}>
               <CardContent>
                 <Typography variant="h5" sx={{ fontFamily: "var(--primary-font)", color: "var(--earth-brown)" }}>
@@ -158,7 +160,7 @@ export default function LandingPage() {
 
         <Card sx={{ borderBottom: "1px solid var(--stone-grey)", borderRadius: 0 }}>
           <Stack direction="row-reverse">
-            <CardMedia component="img" image={image} alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
+            <CardMedia component="img" image='../auth.jpg' alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
             <Box flex={1}>
               <CardContent>
                 <Typography variant="h5" sx={{ fontFamily: "var(--primary-font)", color: "var(--earth-brown)" }}>
@@ -188,7 +190,7 @@ export default function LandingPage() {
 
         <Card sx={{ borderBottom: "1px solid var(--stone-grey)", borderRadius: 0 }}>
           <Stack direction="row">
-            <CardMedia component="img" image={image} alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
+            <CardMedia component="img" image='../testing.jpg' alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
             <Box flex={1}>
               <CardContent>
                 <Typography variant="h5" sx={{ fontFamily: "var(--primary-font)", color: "var(--earth-brown)" }}>
@@ -218,7 +220,7 @@ export default function LandingPage() {
 
         <Card sx={{ borderBottom: "1px solid var(--stone-grey)", borderRadius: 0 }}>
           <Stack direction="row-reverse">
-            <CardMedia component="img" image={image} alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
+            <CardMedia component="img" image='../deploy.jpg' alt="blog" sx={{ width: '50%', objectFit: "cover" }} />
             <Box flex={1}>
               <CardContent>
                 <Typography variant="h5" sx={{ fontFamily: "var(--primary-font)", color: "var(--earth-brown)" }}>
