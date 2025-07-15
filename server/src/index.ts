@@ -9,7 +9,7 @@ import uploadRoute from './routes/upload.routes'
 dotenv.config()
 export const app= express();
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:'https://blog-it-website-92p6.vercel.app/',
     credentials:true,
 }))
 app.use(express.json())

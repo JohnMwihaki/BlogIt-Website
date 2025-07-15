@@ -29,7 +29,6 @@ export default function ProfilePage() {
   if (isLoading) {
     return <Typography>Loading...</Typography>;
   }
-
   return (
     <Container sx={{ py: 6 }}>
       <Typography variant="h4" gutterBottom>

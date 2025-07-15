@@ -45,7 +45,7 @@ export default function BlogForm({
     const formDataImage = new FormData();
     formDataImage.append("image", file);
 
-    const res = await fetch("http://localhost:5500/upload", {
+    const res = await fetch("https://blogit-website-k5nl.onrender.com/upload", {
       method: "POST",
       body: formDataImage,
     });
