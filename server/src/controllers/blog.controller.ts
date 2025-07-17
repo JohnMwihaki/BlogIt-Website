@@ -137,6 +137,7 @@ export async function updateUserInfo(req: Request, res: Response) {
 }
 
 // Update Password
+
 export async function updatePassword(req: Request, res: Response) {
   const { userId, currentPassword, newPassword } = req.body;
   console.log(req.body)
@@ -171,7 +172,7 @@ export async function updatePassword(req: Request, res: Response) {
   }
 }
 
-// Get All Blogs by User
+// Get All Blogs for User
 
 export async function allBlogUser(req: AuthRequest, res: Response) {
   const userId = req.userId;
@@ -200,8 +201,4 @@ export async function allBlogUser(req: AuthRequest, res: Response) {
   } catch (e) {
     res.status(500).json({ error: "Failed to fetch user blogs" });
   }
-}
-
-export const loginuser= async (req:Request,res:Response)=>{
-  res.send("hello world")
 }

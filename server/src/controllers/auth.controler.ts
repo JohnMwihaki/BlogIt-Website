@@ -22,7 +22,7 @@ export default async function Register(req: Request, res: Response) {
       return res.status(403).json({ message: "That user already exists" });
     }
 
-    const hashPassword = await bcrypt.hash(password, 10);
+    const hashPassword = await  bcrypt.hash(password, 10);
 
     const user = await client.users.create({
       data: {
@@ -36,7 +36,15 @@ export default async function Register(req: Request, res: Response) {
 
     const token = generateToken(user.id);
 
-    res.status(201).json(user);
+    res.status(201).json({ message: "User created successfully",
+  user: {
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    userName: user.userName,
+    emailAddress: user.emailAddress,
+  },
+  token});
     
   } catch (error) {
     console.error(error)
@@ -81,6 +89,13 @@ export async function Login(req: Request, res: Response) {
 }
 
 export async function Logout(_req: Request, res: Response) {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  });
   res.status(200).json({ message: "Logged out successfully" });
 }
+
+
 
